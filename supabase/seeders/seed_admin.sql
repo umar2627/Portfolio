@@ -1,0 +1,9 @@
+-- Step 2: Seed admin user data
+-- Do NOT put plain-text passwords here.
+--
+-- Set in .env.local:
+--   ADMIN_EMAIL=admin@portfolio.com
+--   ADMIN_PASSWORD=YourSecurePassword
+--   ADMIN_NAME=Admin
+--
+-- Then run: npm run seed:admin
