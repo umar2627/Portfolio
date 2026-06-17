@@ -10,14 +10,14 @@ export const siteConfig = {
     twitter: process.env.NEXT_PUBLIC_TWITTER_URL ?? "https://twitter.com",
   },
   nav: [
-    { label: "about", href: "#about", number: "01" },
-    { label: "experience", href: "#experience", number: "02" },
-    { label: "projects", href: "#projects", number: "03" },
-    { label: "contact", href: "#contact", number: "04" },
+    { label: "about", href: "#about"},
+    { label: "experience", href: "#experience"},
+    { label: "projects", href: "#projects"},
+    { label: "contact", href: "#contact"},
   ],
   skills: {
-    frontend: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion"],
-    backend: ["Node.js", "PostgreSQL", "Redis", "GraphQL", "REST APIs"],
-    devops: ["Docker", "AWS", "CI/CD", "Kubernetes", "Terraform"],
+    frontend: ["SFCC B2C", "React", "Next.js", "TypeScript", "Tailwind CSS"],
+    backend: ["Node.js", "PostgreSQL", "Redis", "Supabase", "REST APIs"],
+    devops: ["AWS", "CI/CD", "Vercel", "Git", "Jira"],
   },
 };

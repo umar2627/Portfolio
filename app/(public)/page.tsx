@@ -52,7 +52,6 @@ export default async function HomePage() {
 
       <AnimatedSection id="about">
         <SectionHeader
-          number="01"
           label="ABOUT"
           title="About Me"
           description="Get to know me better — my background, skills, and what drives me."
@@ -69,7 +68,6 @@ export default async function HomePage() {
 
       <AnimatedSection id="education">
         <SectionHeader
-          number="02"
           label="EDUCATION"
           title="My Education"
           gradientWord="Education"
@@ -82,7 +80,6 @@ export default async function HomePage() {
 
       <AnimatedSection id="experience">
         <SectionHeader
-          number="02"
           label="EXPERIENCE"
           title="Where I've worked."
           gradientWord="worked."
@@ -99,7 +96,6 @@ export default async function HomePage() {
 
       <AnimatedSection id="reviews">
         <SectionHeader
-          number="05"
           label="REVIEWS"
           title="What people say."
           gradientWord="say."
@@ -116,7 +112,6 @@ export default async function HomePage() {
 
       <AnimatedSection id="contact">
         <SectionHeader
-          number="04"
           label="CONTACT"
           title="Let's connect."
           gradientWord="connect."

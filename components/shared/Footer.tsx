@@ -49,7 +49,8 @@ export function Footer() {
           ← Back to home
         </Link>
         <Link href="/" className="font-mono text-sm font-bold text-white">
-          <span className="text-accent-purple">&lt;</span>dev
+          <span className="text-accent-purple">&lt;</span>
+          Portfolio
           <span className="text-accent-purple"> /&gt;</span>
         </Link>
         <div className="flex items-center gap-4">
@@ -72,7 +73,7 @@ export function Footer() {
         </div>
       </div>
       <p className="pb-6 text-center text-xs text-text-muted">
-        © {new Date().getFullYear()} {siteConfig.name}. All rights reserved.
+        © {new Date().getFullYear()} Umar Khan - All rights reserved.
       </p>
     </footer>
   );
