@@ -1,30 +1,20 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { FiGithub, FiExternalLink } from "react-icons/fi";
 import { Card } from "@/components/ui/Card";
 import { Badge } from "@/components/ui/Badge";
 import { Button } from "@/components/ui/Button";
-import { FilterPill } from "@/components/ui/FilterPill";
-import { SearchInput } from "@/components/ui/SearchInput";
 import { Modal } from "@/components/ui/Modal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { fadeUp, staggerContainer } from "@/components/animations/variants";
-import type { Project, ProjectFilter } from "@/types";
+import type { Project } from "@/types";
 
 interface ProjectsShowcaseProps {
   projects: Project[];
 }
-
-const filters: { key: ProjectFilter; label: string }[] = [
-  { key: "all", label: "All" },
-  { key: "featured", label: "Featured" },
-  { key: "full-stack", label: "Full-Stack" },
-  { key: "open-source", label: "Open Source" },
-  { key: "backend", label: "Backend" },
-];
 
 function ProjectImage({ project, className }: { project: Project; className?: string }) {
   if (project.image_url) {
@@ -47,110 +37,20 @@ function ProjectImage({ project, className }: { project: Project; className?: st
 }
 
 export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
-  const [activeFilter, setActiveFilter] = useState<ProjectFilter>("all");
-  const [search, setSearch] = useState("");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
-  const filteredProjects = useMemo(() => {
-    return projects.filter((p) => {
-      const matchesSearch =
-        !search ||
-        p.title.toLowerCase().includes(search.toLowerCase()) ||
-        p.description.toLowerCase().includes(search.toLowerCase()) ||
-        p.tech_stack.some((t) => t.toLowerCase().includes(search.toLowerCase()));
-
-      if (!matchesSearch) return false;
-
-      switch (activeFilter) {
-        case "featured":
-          return p.featured;
-        case "full-stack":
-          return p.tech_stack.some((t) =>
-            ["react", "next.js", "node.js", "typescript"].includes(t.toLowerCase())
-          );
-        case "open-source":
-          return !!p.github_url;
-        case "backend":
-          return p.tech_stack.some((t) =>
-            ["go", "rust", "node.js", "postgresql", "redis", "kafka"].includes(
-              t.toLowerCase()
-            )
-          );
-        default:
-          return true;
-      }
-    });
-  }, [projects, activeFilter, search]);
-
-  const featured = filteredProjects.filter((p) => p.featured);
-  const other = filteredProjects.filter((p) => !p.featured);
-
-  const liveCount = projects.filter((p) => p.live_url).length;
-
-  const filterCounts = useMemo(() => {
-    const counts: Record<ProjectFilter, number> = {
-      all: projects.length,
-      featured: projects.filter((p) => p.featured).length,
-      "full-stack": projects.filter((p) =>
-        p.tech_stack.some((t) =>
-          ["react", "next.js", "node.js", "typescript"].includes(t.toLowerCase())
-        )
-      ).length,
-      "open-source": projects.filter((p) => p.github_url).length,
-      backend: projects.filter((p) =>
-        p.tech_stack.some((t) =>
-          ["go", "rust", "node.js", "postgresql", "redis", "kafka"].includes(
-            t.toLowerCase()
-          )
-        )
-      ).length,
-    };
-    return counts;
-  }, [projects]);
+  const featured = projects.filter((p) => p.featured);
+  const other = projects.filter((p) => !p.featured);
 
   return (
     <div className="space-y-12">
       <div className="flex flex-col gap-8 lg:flex-row lg:items-end lg:justify-between">
         <SectionHeader
-          number="03"
           label="PROJECTS"
           title="Things I've shipped."
           gradientWord="shipped."
           breadcrumb="~/ projects"
           description="A collection of projects I've built — from open-source tools to production systems serving millions of users."
-        />
-        <div className="flex gap-8">
-          <div className="text-center">
-            <p className="text-3xl font-bold text-accent-blue">{projects.length}+</p>
-            <p className="text-xs text-text-muted">Total Projects</p>
-          </div>
-          <div className="text-center">
-            <p className="text-3xl font-bold text-accent-green">12k+</p>
-            <p className="text-xs text-text-muted">GitHub Stars</p>
-          </div>
-          <div className="text-center">
-            <p className="text-3xl font-bold text-accent-cyan">{liveCount}</p>
-            <p className="text-xs text-text-muted">Live Products</p>
-          </div>
-        </div>
-      </div>
-
-      <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <div className="flex flex-wrap gap-2">
-          {filters.map((f) => (
-            <FilterPill
-              key={f.key}
-              label={f.label}
-              count={filterCounts[f.key]}
-              active={activeFilter === f.key}
-              onClick={() => setActiveFilter(f.key)}
-            />
-          ))}
-        </div>
-        <SearchInput
-          value={search}
-          onChange={setSearch}
-          className="w-full sm:w-64"
         />
       </div>
 
@@ -159,7 +59,7 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
           <h3 className="font-mono text-xs uppercase tracking-widest text-text-muted">
             Featured
           </h3>
-          {featured.map((project, index) => (
+          {featured.map((project) => (
             <motion.div
               key={project.id}
               variants={fadeUp}
@@ -173,10 +73,7 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
                     <ProjectImage project={project} />
                   </div>
                   <div className="flex flex-col justify-center p-6 lg:p-8">
-                    <span className="font-mono text-sm text-text-muted">
-                      {String(index + 1).padStart(2, "0")}
-                    </span>
-                    <h3 className="mt-2 text-2xl font-bold text-white">
+                    <h3 className="text-2xl font-bold text-white">
                       {project.title}
                     </h3>
                     <p className="mt-3 text-sm leading-relaxed text-text-secondary">
@@ -240,7 +137,7 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
             viewport={{ once: true }}
             className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4"
           >
-            {other.map((project, index) => (
+            {other.map((project) => (
               <motion.div key={project.id} variants={fadeUp}>
                 <Card
                   className="group cursor-pointer overflow-hidden"
@@ -248,9 +145,6 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
                 >
                   <div className="relative aspect-video overflow-hidden">
                     <ProjectImage project={project} />
-                    <span className="absolute right-3 top-3 font-mono text-xs text-white/60">
-                      #{String(index + featured.length + 1).padStart(2, "0")}
-                    </span>
                   </div>
                   <div className="p-4">
                     <h3 className="font-bold text-white group-hover:text-accent-purple transition-colors">
@@ -296,8 +190,8 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
         </div>
       )}
 
-      {filteredProjects.length === 0 && (
-        <p className="text-center text-text-secondary">No projects match your filters.</p>
+      {projects.length === 0 && (
+        <p className="text-center text-text-secondary">No projects yet.</p>
       )}
 
       <Modal

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { motion, AnimatePresence } from "framer-motion";
 import { FiMenu, FiX } from "react-icons/fi";
 import { siteConfig } from "@/lib/config/site";
-import { ThemeToggle } from "./ThemeToggle";
 import { Button } from "@/components/ui/Button";
 import { useResume } from "@/hooks/useResume";
 import { cn } from "@/lib/utils/cn";
@@ -39,9 +38,8 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="font-mono text-lg font-bold text-white">
           <span className="text-accent-purple">&lt;</span>
-          dev
+          Portfolio
           <span className="text-accent-purple"> /&gt;</span>
-          <span className="ml-1 text-xs text-text-muted">v2.0</span>
         </Link>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -51,13 +49,12 @@ export function Navbar() {
               onClick={() => handleNavClick(item.href)}
               className="font-mono text-sm text-text-secondary transition-colors hover:text-white"
             >
-              <span className="text-text-muted">{item.number}.</span> {item.label}
+              {item.label}
             </button>
           ))}
         </div>
 
         <div className="hidden items-center gap-3 md:flex">
-          <ThemeToggle />
           <Button
             variant="outline"
             size="sm"
@@ -69,7 +66,6 @@ export function Navbar() {
         </div>
 
         <div className="flex items-center gap-3 md:hidden">
-          <ThemeToggle />
           <button
             onClick={() => setIsOpen(!isOpen)}
             className="rounded-lg p-2 text-text-secondary hover:text-white"
@@ -94,7 +90,7 @@ export function Navbar() {
                   onClick={() => handleNavClick(item.href)}
                   className="font-mono text-left text-sm text-text-secondary hover:text-white"
                 >
-                  <span className="text-text-muted">{item.number}.</span> {item.label}
+                  {item.label}
                 </button>
               ))}
               <Button

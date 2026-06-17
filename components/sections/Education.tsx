@@ -27,7 +27,7 @@ export function Education({ education }: EducationProps) {
       viewport={{ once: true }}
       className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
     >
-      {education.map((item, index) => {
+      {education.map((item) => {
         const institutionHref = item.institution_url
           ? normalizeUrl(item.institution_url)
           : null;
@@ -36,9 +36,6 @@ export function Education({ education }: EducationProps) {
           <motion.div key={item.id} variants={fadeUp}>
             <Card className="h-full p-6">
               <div className="mb-2 flex items-start justify-between gap-2">
-                <span className="font-mono text-xs text-text-muted">
-                  #{String(index + 1).padStart(2, "0")}
-                </span>
                 <ExternalLinkButton
                   url={item.institution_url}
                   label={`Visit ${item.institution}`}

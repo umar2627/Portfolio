@@ -11,12 +11,11 @@ import { Badge } from "@/components/ui/Badge";
 import { siteConfig } from "@/lib/config/site";
 import { fadeUp, staggerContainer } from "@/components/animations/variants";
 
-const techStack = ["React", "TypeScript", "Node.js", "PostgreSQL", "AWS", "Docker"];
+const techStack = [ "SFCC B2C", "React", "TypeScript", "Next.js", "Node.js", "Tailwind CSS", "PostgreSQL", "Supabase"];
 
 const stats = [
   { value: "3+", label: "Years Exp." },
-  { value: "40+", label: "Projects" },
-  { value: "12k+", label: "GitHub Stars" },
+  { value: "20+", label: "Projects" },
 ];
 
 function FloatingShapes() {
@@ -79,7 +78,7 @@ export function Hero() {
     if (!typingRef.current) return;
     const instance = new TypeIt(typingRef.current, {
       strings: techStack,
-      speed: 80,
+      speed: 40,
       deleteSpeed: 40,
       loop: true,
       breakLines: false,
@@ -123,7 +122,7 @@ export function Hero() {
             </p>
 
             <div className="flex flex-wrap gap-2">
-              {techStack.slice(0, 4).map((tech) => (
+              {techStack.slice(0, 8).map((tech) => (
                 <Badge key={tech}>{tech}</Badge>
               ))}
             </div>
