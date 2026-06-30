@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/Button";
 import { Modal } from "@/components/ui/Modal";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { fadeUp, staggerContainer } from "@/components/animations/variants";
+import { ProjectDescription } from "@/components/projects/ProjectDescription";
 import type { Project } from "@/types";
 
 interface ProjectsShowcaseProps {
@@ -23,12 +24,15 @@ function ProjectImage({ project, className }: { project: Project; className?: st
         src={project.image_url}
         alt={project.title}
         fill
+        sizes="(max-width: 1024px) 100vw, 50vw"
         className={`object-cover ${className ?? ""}`}
       />
     );
   }
   return (
-    <div className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-accent-purple/20 via-accent-pink/10 to-accent-blue/20 ${className ?? ""}`}>
+    <div
+      className={`flex h-full w-full items-center justify-center bg-gradient-to-br from-accent-purple/20 via-accent-pink/10 to-accent-blue/20 ${className ?? ""}`}
+    >
       <span className="font-mono text-4xl font-bold text-white/20">
         {project.title.charAt(0)}
       </span>
@@ -68,23 +72,26 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
               viewport={{ once: true }}
             >
               <Card elevated className="overflow-hidden">
-                <div className="grid lg:grid-cols-2">
-                  <div className="relative aspect-video lg:aspect-auto lg:min-h-[320px]">
+                <div className="grid h-auto max-h-none sm:h-[420px] lg:grid-cols-2">
+                  <div className="relative aspect-video overflow-hidden sm:aspect-auto sm:h-full">
                     <ProjectImage project={project} />
                   </div>
-                  <div className="flex flex-col justify-center p-6 lg:p-8">
-                    <h3 className="text-2xl font-bold text-white">
+                  <div className="flex min-h-0 flex-col p-6 lg:p-8">
+                    <h3 className="shrink-0 text-xl font-bold text-white lg:text-2xl">
                       {project.title}
                     </h3>
-                    <p className="mt-3 text-sm leading-relaxed text-text-secondary">
-                      {project.description}
-                    </p>
-                    <div className="mt-4 flex flex-wrap gap-2">
+                    <div className="mt-3 min-h-0 flex-1 overflow-y-auto scrollbar-thin pr-1">
+                      <ProjectDescription
+                        description={project.description}
+                        size="sm"
+                      />
+                    </div>
+                    <div className="mt-4 shrink-0 flex flex-wrap gap-2">
                       {project.tech_stack.map((tech) => (
                         <Badge key={tech}>{tech}</Badge>
                       ))}
                     </div>
-                    <div className="mt-6 flex flex-wrap gap-3">
+                    <div className="mt-4 shrink-0 flex flex-wrap gap-3">
                       {project.github_url && (
                         <a
                           href={project.github_url}
@@ -140,19 +147,22 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
             {other.map((project) => (
               <motion.div key={project.id} variants={fadeUp}>
                 <Card
-                  className="group cursor-pointer overflow-hidden"
+                  className="group flex h-full cursor-pointer flex-col overflow-hidden"
                   onClick={() => setSelectedProject(project)}
                 >
-                  <div className="relative aspect-video overflow-hidden">
+                  <div className="relative aspect-video shrink-0 overflow-hidden">
                     <ProjectImage project={project} />
                   </div>
-                  <div className="p-4">
-                    <h3 className="font-bold text-white group-hover:text-accent-purple transition-colors">
+                  <div className="flex min-h-0 flex-1 flex-col p-4">
+                    <h3 className="shrink-0 font-bold text-white transition-colors group-hover:text-accent-purple">
                       {project.title}
                     </h3>
-                    <p className="mt-2 line-clamp-2 text-xs text-text-secondary">
-                      {project.description}
-                    </p>
+                    <div className="mt-2 h-14 shrink-0 overflow-y-auto scrollbar-thin pr-1">
+                      <ProjectDescription
+                        description={project.description}
+                        size="xs"
+                      />
+                    </div>
                     <div className="mt-3 flex flex-wrap gap-1">
                       {project.tech_stack.slice(0, 3).map((tech) => (
                         <Badge key={tech}>{tech}</Badge>
@@ -204,9 +214,12 @@ export function ProjectsShowcase({ projects }: ProjectsShowcaseProps) {
             <div className="relative aspect-video overflow-hidden rounded-xl">
               <ProjectImage project={selectedProject} />
             </div>
-            <p className="text-text-secondary leading-relaxed">
-              {selectedProject.description}
-            </p>
+            <div className="max-h-64 overflow-y-auto scrollbar-thin pr-1">
+              <ProjectDescription
+                description={selectedProject.description}
+                size="base"
+              />
+            </div>
             <div className="flex flex-wrap gap-2">
               {selectedProject.tech_stack.map((tech) => (
                 <Badge key={tech}>{tech}</Badge>

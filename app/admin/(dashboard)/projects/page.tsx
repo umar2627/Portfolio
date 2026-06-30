@@ -159,7 +159,16 @@ export default function AdminProjectsPage() {
       <Modal isOpen={modalOpen} onClose={() => setModalOpen(false)} title={editingId ? "Edit Project" : "Add Project"} className="max-w-2xl">
         <div className="space-y-4">
           <Input label="Title" value={form.title} onChange={(e) => setForm({ ...form, title: e.target.value })} />
-          <Textarea label="Description" rows={4} value={form.description} onChange={(e) => setForm({ ...form, description: e.target.value })} />
+          <Textarea
+            label="Description"
+            rows={8}
+            placeholder={`## Overview\nShort intro paragraph.\n\n## Key Features\n- Feature one\n- Feature two\n\n## Architecture\n- Next.js App Router\n- Supabase`}
+            value={form.description}
+            onChange={(e) => setForm({ ...form, description: e.target.value })}
+          />
+          <p className="text-xs text-text-muted">
+            Use ## for headings, - for bullets, and blank lines between sections.
+          </p>
           <Input label="Tech Stack (comma separated)" value={form.tech_stack} onChange={(e) => setForm({ ...form, tech_stack: e.target.value })} />
           <ImageUpload value={form.image_url} onChange={(url) => setForm({ ...form, image_url: url ?? "" })} />
           <Input label="Live URL" value={form.live_url} onChange={(e) => setForm({ ...form, live_url: e.target.value })} />
