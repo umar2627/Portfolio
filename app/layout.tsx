@@ -18,8 +18,8 @@ const jetbrains = JetBrains_Mono({
 
 export const metadata: Metadata = {
   title: {
-    default: "Your Name | Full Stack Developer",
-    template: "%s | Your Name",
+    default: "Umar Khan | Full Stack Developer",
+    template: "%s | Umar Khan",
   },
   description:
     "Building scalable systems and beautiful interfaces. Full-stack developer portfolio.",
@@ -30,18 +30,18 @@ export const metadata: Metadata = {
     "next.js",
     "typescript",
   ],
-  authors: [{ name: "Your Name" }],
+  authors: [{ name: "Umar Khan" }],
   openGraph: {
     type: "website",
     locale: "en_US",
     siteName: "Portfolio",
-    title: "Your Name | Full Stack Developer",
+    title: "Umar Khan | Full Stack Developer",
     description:
       "Building scalable systems and beautiful interfaces.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Your Name | Full Stack Developer",
+    title: "Umar Khan | Full Stack Developer",
     description:
       "Building scalable systems and beautiful interfaces.",
   },

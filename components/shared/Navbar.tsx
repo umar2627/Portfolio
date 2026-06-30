@@ -38,7 +38,7 @@ export function Navbar() {
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-4 sm:px-6 lg:px-8">
         <Link href="/" className="font-mono text-lg font-bold text-white">
           <span className="text-accent-purple">&lt;</span>
-          Portfolio
+          Umar Khan Portfolio
           <span className="text-accent-purple"> /&gt;</span>
         </Link>
 

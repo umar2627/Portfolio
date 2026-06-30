@@ -50,7 +50,7 @@ export function Footer() {
         </Link>
         <Link href="/" className="font-mono text-sm font-bold text-white">
           <span className="text-accent-purple">&lt;</span>
-          Portfolio
+          Umar Khan Portfolio
           <span className="text-accent-purple"> /&gt;</span>
         </Link>
         <div className="flex items-center gap-4">

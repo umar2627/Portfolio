@@ -54,7 +54,7 @@ function CodeWindow() {
           <span className="text-purple-400">const</span>{" "}
           <span className="text-blue-400">developer</span> = {"{"}
           {"\n"}  <span className="text-green-400">name</span>:{" "}
-          <span className="text-yellow-300">&apos;Your Name&apos;</span>,{"\n"}{" "}
+          <span className="text-yellow-300">&apos;Umar Khan&apos;</span>,{"\n"}{" "}
           <span className="text-green-400">role</span>:{" "}
           <span className="text-yellow-300">&apos;Full Stack Developer&apos;</span>,{"\n"}{" "}
           <span className="text-green-400">skills</span>: [

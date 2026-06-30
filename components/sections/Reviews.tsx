@@ -246,21 +246,21 @@ export function Reviews({ reviews, averageRating, totalCount }: ReviewsProps) {
             <Input
               label="Your Name"
               id="review-name"
-              placeholder="Sophia Ramirez"
+              placeholder="Your Name"
               error={errors.name?.message}
               {...register("name")}
             />
             <Input
               label="Role"
               id="review-role"
-              placeholder="Lead Product Designer"
+              placeholder="Your Role"
               error={errors.role?.message}
               {...register("role")}
             />
             <Input
               label="Company"
               id="review-company"
-              placeholder="Zenith Labs"
+              placeholder="Your Company"
               error={errors.company?.message}
               {...register("company")}
             />
@@ -290,7 +290,7 @@ export function Reviews({ reviews, averageRating, totalCount }: ReviewsProps) {
               Submit Recommendation
             </Button>
             <p className="text-center text-xs text-text-muted">
-              Your recommendation will appear after admin approval.
+              Thank you for your recommendation!
             </p>
           </form>
         </div>
